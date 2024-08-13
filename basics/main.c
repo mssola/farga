@@ -45,26 +45,26 @@ void test_reverse_string()
 }
 
 /*
- * Returns true if the given string is a palyndrome, false otherwise.
+ * Returns true if the given string is a palindrome, false otherwise.
  *
  * Implemented in string.S
  */
-bool is_palyndrome(char *str);
+bool is_palindrome(char *str);
 
-void test_is_palyndrome()
+void test_is_palindrome()
 {
-	assert(is_palyndrome(NULL) == 0);
-	assert(is_palyndrome("") == 0);
-	assert(is_palyndrome("aba") == 1);
-	assert(is_palyndrome("aaa") == 1);
-	assert(is_palyndrome("This is a a si sihT") == 1);
+	assert(is_palindrome(NULL) == 0);
+	assert(is_palindrome("") == 0);
+	assert(is_palindrome("aba") == 1);
+	assert(is_palindrome("aaa") == 1);
+	assert(is_palindrome("This is a a si sihT") == 1);
 
-	printf("is_palyndrome:\tOK\n");
+	printf("is_palindrome:\tOK\n");
 }
 
 int main()
 {
 	test_factorial();
 	test_reverse_string();
-	test_is_palyndrome();
+	test_is_palindrome();
 }

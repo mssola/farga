@@ -48,13 +48,13 @@ reverse_done:
 end:
     jr ra
 
-.globl is_palyndrome
-.type is_palyndrome, @function
+.globl is_palindrome
+.type is_palindrome, @function
 
-// bool is_palyndrome(char *str);
-is_palyndrome:
+// bool is_palindrome(char *str);
+is_palindrome:
     // Return early on null pointer.
-    beq a0, zero, palyndrome_no
+    beq a0, zero, palindrome_no
 
     // Set `t0` to point to the end of the string.
     add t0, a0, zero
@@ -68,14 +68,14 @@ pal_set_end_ptr:
     // to be done and we can return early. Otherwise decrement `t0` so it points
     // to the byte right before the null termination.
 pal_end_ptr_done:
-    beq a0, t0, palyndrome_no
+    beq a0, t0, palindrome_no
     addi t0, t0, -1
 
 pal_loop:
     // Swap values between the two pointers.
     lb t1, 0(a0)
     lb t2, 0(t0)
-    bne t1, t2, palyndrome_no
+    bne t1, t2, palindrome_no
 
     // Move pointers and check whether the pointers have already crossed. If
     // they have not crossed yet there is still looping to be done. Otherwise
@@ -84,10 +84,10 @@ pal_loop:
     addi t0, t0, -1
     bleu a0, t0, pal_loop
 
-palyndrome_yes:
+palindrome_yes:
     li a0, 1
     jr ra
 
-palyndrome_no:
+palindrome_no:
     li a0, 0
     jr ra
