@@ -1,2 +1,8 @@
 *.o
-basics/basics
+
+# arch/riscv
+arch/riscv/usr/basics
+arch/riscv/bios/hello
+arch/riscv/kernel/hello
+arch/riscv/init/init
+arch/riscv/init/little_shell
