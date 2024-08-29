@@ -92,6 +92,17 @@ static inline void atomic_add(uint64_t *a, uint64_t value)
 	 * result. If it fails (e.g. the address was already being used), then `t0 =
 	 * 0` and `beqz` will instruct it to try again.
 	 *
+	 * Note that on the board I'm using the 'Zawrs' extension is not available.
+	 * Otherwise I could have re-arranged to code to something like this:
+	 *
+	 *     amoadd.d t0, %1, %0
+	 *     bnez t0, .Latomic_add_done
+	 *     wrs.nto
+	 *  .Latomic_add_done:
+	 *
+	 * This is an extra instruction but it saves on power if the memory address
+	 * happens to be used at access time.
+	 *
 	 * As for the 'A' RISC-V specific constraint, it means "An address that is
 	 * held in a general-purpose register". GCC will then do the magic and
 	 * convert it to `amoadd.d t0, a1, (a0)` or something like that. Note that
@@ -100,9 +111,9 @@ static inline void atomic_add(uint64_t *a, uint64_t value)
 	 *
 	 * See: https://gcc.gnu.org/onlinedocs/gcc/Machine-Constraints.html.
 	 */
-    asm volatile(".Latomic_retry:\n\t"
+    asm volatile(".Latomic_add_retry:\n\t"
 				 "amoadd.d t0, %1, %0\n\t"
-				 "beqz t0, .Latomic_retry"
+				 "beqz t0, .Latomic_add_retry"
 				 : "+A" (*a)
 				 : "r" (value)
 				 : "memory");
