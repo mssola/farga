@@ -80,10 +80,52 @@ void test_greater_than_ten(void)
 	printf("greater_than_ten:\tOK\n");
 }
 
+/*
+ * Atomically add the integer pointed by `a` with the given `value`. Although
+ * this is a function, I've checked that the assembly produced by GCC on a
+ * decent optimization level actually inlines this.
+ */
+static inline void atomic_add(uint64_t *a, uint64_t value)
+{
+	/*
+	 * The execution is a mere `amoadd` instruction, but it will set on `t0` the
+	 * result. If it fails (e.g. the address was already being used), then `t0 =
+	 * 0` and `beqz` will instruct it to try again.
+	 *
+	 * As for the 'A' RISC-V specific constraint, it means "An address that is
+	 * held in a general-purpose register". GCC will then do the magic and
+	 * convert it to `amoadd.d t0, a1, (a0)` or something like that. Note that
+	 * we have to pass the '+' constraint modifier because the address will be
+	 * both read and written atomically.
+	 *
+	 * See: https://gcc.gnu.org/onlinedocs/gcc/Machine-Constraints.html.
+	 */
+    asm volatile(".Latomic_retry:\n\t"
+				 "amoadd.d t0, %1, %0\n\t"
+				 "beqz t0, .Latomic_retry"
+				 : "+A" (*a)
+				 : "r" (value)
+				 : "memory");
+}
+
+void test_atomic_add(void)
+{
+	uint64_t i = 4;
+
+	atomic_add(&i, 0);
+	assert(i == 4);
+
+	atomic_add(&i, 2);
+	assert(i == 6);
+
+	printf("atomic_add:\t\tOK\n");
+}
+
 int main()
 {
 	test_factorial();
 	test_reverse_string();
 	test_is_palindrome();
 	test_greater_than_ten();
+	test_atomic_add();
 }
