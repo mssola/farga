@@ -28,12 +28,12 @@ void test_factorial(void)
  *
  * Implemented in string.S
  */
-char * reverse_string(char *str);
+char *reverse_string(char *str);
 
 void test_reverse_string(void)
 {
 	assert(reverse_string(NULL) == NULL);
-	assert(reverse_string("") == "");
+	assert(strlen(reverse_string("")) == 0);
 
 	char s1[] = "This is a string.";
 	assert(strcmp(reverse_string(s1), ".gnirts a si sihT") == 0);
@@ -75,13 +75,13 @@ bool greater_than_ten(double a, uint64_t b);
 void test_greater_than_ten(void)
 {
 	assert(!greater_than_ten(2.3, 1)); // 4.3
-	assert(greater_than_ten(2.3, 2));  // 10.6
+	assert(greater_than_ten(2.3, 2)); // 10.6
 
 	printf("greater_than_ten:\tOK\n");
 }
 
 /*
- * Atomically add the integer pointed by `a` with the given `value`. Although
+ * Atomically add the integer pointed by `a` with the given `value`.
  * this is a function, I've checked that the assembly produced by GCC on a
  * decent optimization level actually inlines this.
  */
@@ -111,11 +111,11 @@ static inline void atomic_add(uint64_t *a, uint64_t value)
 	 *
 	 * See: https://gcc.gnu.org/onlinedocs/gcc/Machine-Constraints.html.
 	 */
-    asm volatile(".Latomic_add_retry:\n\t"
+	asm volatile(".Latomic_add_retry:\n\t"
 				 "amoadd.d t0, %1, %0\n\t"
 				 "beqz t0, .Latomic_add_retry"
-				 : "+A" (*a)
-				 : "r" (value)
+				 : "+A"(*a)
+				 : "r"(value)
 				 : "memory");
 }
 
