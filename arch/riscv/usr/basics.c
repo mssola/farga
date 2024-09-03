@@ -116,7 +116,7 @@ static inline void atomic_add(uint64_t *a, uint64_t value)
 				 "beqz t0, .Latomic_add_retry"
 				 : "+A"(*a)
 				 : "r"(value)
-				 : "memory");
+				 : "t0", "memory");
 }
 
 void test_atomic_add(void)
