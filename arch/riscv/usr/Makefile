@@ -1,7 +1,7 @@
-CC       = $(CROSS_COMPILE)gcc
-LD       = $(CROSS_COMPILE)ld
-CCFLAGS  =
-EXE      = basics
+CROSS_COMPILE ?= riscv64-suse-linux-
+CC       	   = $(CROSS_COMPILE)gcc
+CCFLAGS        =
+EXE            = basics
 
 DEBUG =
 ifneq ($(strip $(DEBUG)),)
@@ -13,7 +13,7 @@ all: clean $(EXE)
 
 .PHONY: $(EXE)
 $(EXE):
-	gcc $(CCFLAGS) -o $(EXE) basics.c factorial.S string.S float.S
+	$(CC) $(CCFLAGS) -o $(EXE) basics.c factorial.S string.S float.S
 
 .PHONY: clean
 clean:
