@@ -3,7 +3,7 @@ NAME = machine
 CROSS_COMPILE ?= riscv64-suse-linux-
 AS             = $(CROSS_COMPILE)as
 LD             = $(CROSS_COMPILE)ld
-ASFLAGS        = -g -march=rv64g -mabi=lp64
+ASFLAGS        = -g -march=rv64g -mabi=lp64d
 QEMU          ?= qemu-system-riscv64
 QEMU_FLAGS    ?=
 

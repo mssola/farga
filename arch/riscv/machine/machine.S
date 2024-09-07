@@ -52,7 +52,7 @@ get_serial_address:
 	sll t1, t1, 4
 	add t1, t1, t0
 
-	# Next loop.
+	# Next iteration.
 	addi a0, a0, 1
 	j .parse_hex_loop
 
