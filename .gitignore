@@ -1,4 +1,9 @@
+# Generic stuff.
 *.o
+*.ko
+*.mod
+*.mod.c
+*.cmd
 
 # arch/riscv
 arch/riscv/usr/basics
@@ -6,3 +11,7 @@ arch/riscv/machine/machine
 arch/riscv/kernel/hello
 arch/riscv/init/init
 arch/riscv/init/little_shell
+
+# kernel/dtm
+kernel/dtm/modules.order
+kernel/dtm/Module.symvers

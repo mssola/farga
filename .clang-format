@@ -55,6 +55,9 @@ DisableFormat: false
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: false
 
+ForEachMacros:
+  - 'for_each_possible_cpu'
+
 IncludeBlocks: Preserve
 IncludeCategories:
   - Regex: '.*'
