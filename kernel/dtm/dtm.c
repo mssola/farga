@@ -48,8 +48,6 @@ static int __init dtm_init(void)
 	 * Kernel which allows `cpu` to be an iterator over CPU device nodes.
 	 */
 	for_each_possible_cpu(cpu) {
-		/* isa = NULL; */
-
 		/*
 		 * Given a CPU identifier, `of_cpu_device_node_get` returns a `struct
 		 * device_node` related to the specified CPU (or NULL on error).
@@ -66,7 +64,7 @@ static int __init dtm_init(void)
 		 */
 		if (!of_property_present(node, "riscv,isa")) {
 			pr_warn("Unable to find 'riscv,isa' for this node\n");
-			continue;
+			goto release_cpu_node;
 		}
 
 		/*
@@ -79,7 +77,7 @@ static int __init dtm_init(void)
 		rc = of_property_read_string(node, "riscv,isa", &isa);
 		if (rc) {
 			pr_warn("Unable to find \"riscv,isa\" devicetree entry\n");
-			continue;
+			goto release_cpu_node;
 		}
 		pr_info("RISC-V ISA for '%s': %s\n", node->full_name, isa);
 
@@ -90,7 +88,7 @@ static int __init dtm_init(void)
 		parent = of_get_parent(node);
 		if (!node) {
 			pr_warn("No parent for the given node!\n");
-			continue;
+			goto release_cpu_node;
 		}
 		pr_info("parent: %s\n", node->full_name);
 
@@ -99,8 +97,9 @@ static int __init dtm_init(void)
 		 * nodes. We are done using these instances, so we should decrement
 		 * their life times.
 		 */
-		of_node_put(node);
 		of_node_put(parent);
+release_cpu_node:
+		of_node_put(node);
 	}
 	return 0;
 }
