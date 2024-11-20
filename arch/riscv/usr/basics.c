@@ -132,6 +132,25 @@ void test_atomic_add(void)
 	printf("atomic_add:\t\tOK\n");
 }
 
+extern int mstrcmp(const char *s1, const char *s2);
+
+void test_mstrcmp(void)
+{
+	char *strings[] = {
+		"hello", "", "iello", "helloa", "contammusaaquellhomedegranarditquetantissimerra",
+	};
+
+	for (uint64_t i = 0; i < 1000000000; i++) {
+		assert(mstrcmp(strings[0], strings[0]) == 0);
+		assert(mstrcmp(strings[0], strings[1]) > 0);
+		assert(mstrcmp(strings[0], strings[2]) < 0);
+		assert(mstrcmp(strings[0], strings[3]) < 0);
+		assert(mstrcmp(strings[0], strings[4]) > 0);
+	}
+
+	printf("mstrcmp:\t\tOK\n");
+}
+
 int main()
 {
 	test_factorial();
@@ -139,4 +158,5 @@ int main()
 	test_is_palindrome();
 	test_greater_than_ten();
 	test_atomic_add();
+	test_mstrcmp();
 }

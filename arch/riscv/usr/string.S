@@ -91,3 +91,21 @@ palindrome_yes:
 palindrome_no:
     li a0, 0
     jr ra
+
+.globl mstrcmp
+.type mstrcmp, @function
+
+// int mstrcmp(const char *, const char *);
+mstrcmp:
+1:
+	lbu t0, 0(a0)
+	lbu t1, 0(a1)
+	bne t0, t1, 2f
+	addi a0, a0, 1
+	addi a1, a1, 1
+	bnez t0, 1b
+	li a0, 0
+	ret
+2:
+	sub a0, t0, t1
+	ret
