@@ -1,7 +1,6 @@
-CROSS_COMPILE ?= riscv64-suse-linux-
-CC       	   = $(CROSS_COMPILE)gcc
-CCFLAGS        =
-EXE            = basics
+CC      = $(CROSS_COMPILE)gcc
+CCFLAGS =
+EXE     = basics
 
 DEBUG =
 ifneq ($(strip $(DEBUG)),)
