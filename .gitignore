@@ -6,11 +6,10 @@
 *.cmd
 
 # arch/riscv
-arch/riscv/usr/basics
+arch/riscv/user/basics/basics
+arch/riscv/user/hwprobe/probe
 arch/riscv/machine/machine
 arch/riscv/kernel/hello
-arch/riscv/init/init
-arch/riscv/init/little_shell
 arch/riscv/linux/probe
 
 # kernel/dtm
