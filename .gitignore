@@ -8,9 +8,10 @@
 # arch/riscv
 arch/riscv/user/basics/basics
 arch/riscv/user/hwprobe/probe
+arch/riscv/supervisor/hsm/hsm.ld
+arch/riscv/supervisor/hsm/hsm
+arch/riscv/supervisor/hsm/config.h
 arch/riscv/machine/machine
-arch/riscv/kernel/hello
-arch/riscv/linux/probe
 
 # kernel/dtm
 kernel/dtm/modules.order

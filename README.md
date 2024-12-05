@@ -1,4 +1,4 @@
-A bunch of code to messes with low level stuff. That is:
+A bunch of code that messes with low level stuff. That is:
 
 - `arch`:
   - `machine`: prints "hello, world" on the serial port while running in M mode
