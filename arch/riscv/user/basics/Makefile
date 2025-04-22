@@ -1,5 +1,5 @@
 CC      = $(CROSS_COMPILE)gcc
-CCFLAGS =
+CCFLAGS = -static
 EXE     = basics
 
 DEBUG =

@@ -24,7 +24,7 @@ ISA     ?= rv64imafdc_zicntr_zicsr_zifencei_zihpm_zca_zcd_zba_zbb
 WARNINGS = -Werror -Wpedantic -Wall -Wextra -Wcast-align -Wcast-qual -Winit-self \
            -Wmissing-include-dirs -Wredundant-decls -Wshadow -Wsign-conversion \
            -Wswitch-default -Wundef -Wunreachable-code -Wmissing-noreturn
-CCFLAGS  = $(WARNINGS) -march=$(ISA)
+CCFLAGS  = $(WARNINGS) -march=$(ISA) -static
 LDFLAGS  =
 
 
