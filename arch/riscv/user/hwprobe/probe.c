@@ -1,19 +1,21 @@
 #define _GNU_SOURCE
 
-#include <sched.h>
-#include <asm/hwprobe.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdint.h>
 
-#define NR_RISCV_HWPROBE 258
+#include <sched.h>
+#include <asm/hwprobe.h>
+#include <asm/unistd.h>
 
+#ifndef RISCV_HWPROBE_EXT_ZICNTR
 // Merged in Linux v6.15.
 // See 4458b8f68dc7 ("riscv: hwprobe: export Zicntr and Zihpm extensions").
 #define RISCV_HWPROBE_EXT_ZICNTR (1ULL << 50)
 #define RISCV_HWPROBE_EXT_ZIHPM (1ULL << 51)
+#endif
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr)[0])
 
@@ -253,7 +255,7 @@ int main()
 	pairs = (struct riscv_hwprobe){
 		.key = RISCV_HWPROBE_KEY_BASE_BEHAVIOR,
 	};
-	rc = syscall(NR_RISCV_HWPROBE, &pairs, 1, 0, NULL, 0);
+	rc = syscall(__NR_riscv_hwprobe, &pairs, 1, 0, NULL, 0);
 	if (rc) {
 		perror("could not fetch the base behavior for the system");
 		exit(EXIT_FAILURE);
@@ -265,7 +267,7 @@ int main()
 	pairs = (struct riscv_hwprobe){
 		.key = RISCV_HWPROBE_KEY_IMA_EXT_0,
 	};
-	rc = syscall(NR_RISCV_HWPROBE, &pairs, 1, 0, NULL, 0);
+	rc = syscall(__NR_riscv_hwprobe, &pairs, 1, 0, NULL, 0);
 	if (rc) {
 		perror("could not fetch extensions as given by hwprobe");
 		exit(EXIT_FAILURE);
