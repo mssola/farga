@@ -10,11 +10,10 @@
 
 #define NR_RISCV_HWPROBE 258
 
-// Depend on Linux patches that have not been merged upstream...
-#define RISCV_HWPROBE_EXT_ZICNTR (1ULL << 49)
-#define RISCV_HWPROBE_EXT_ZIHPM (1ULL << 50)
-#define RISCV_HWPROBE_EXT_ZICSR (1ULL << 51)
-#define RISCV_HWPROBE_EXT_ZIFENCEI (1ULL << 52)
+// Merged in Linux v6.15.
+// See 4458b8f68dc7 ("riscv: hwprobe: export Zicntr and Zihpm extensions").
+#define RISCV_HWPROBE_EXT_ZICNTR (1ULL << 50)
+#define RISCV_HWPROBE_EXT_ZIHPM (1ULL << 51)
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr)[0])
 
@@ -227,14 +226,6 @@ static struct ext_pair_t ext_pairs[] = {
 	{
 		.id = "ZIHPM",
 		.value = RISCV_HWPROBE_EXT_ZIHPM,
-	},
-	{
-		.id = "ZICSR",
-		.value = RISCV_HWPROBE_EXT_ZICSR,
-	},
-	{
-		.id = "ZIFENCEI",
-		.value = RISCV_HWPROBE_EXT_ZIFENCEI,
 	},
 };
 
