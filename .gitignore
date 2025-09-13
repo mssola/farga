@@ -16,3 +16,6 @@ arch/riscv/machine/machine
 # kernel/dtm
 kernel/dtm/modules.order
 kernel/dtm/Module.symvers
+
+# lang/c
+lang/c/counted_by
