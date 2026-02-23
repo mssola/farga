@@ -20,3 +20,7 @@ kernel/vdso/vdso
 
 # lang/c
 lang/c/counted_by
+
+# fs
+fs/btrfs/shutdown/shutdown
+fs/btrfs/shutdown/fserror
