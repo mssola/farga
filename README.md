@@ -8,6 +8,7 @@ A bunch of code that messes with low level stuff. That is:
     harts.
   - `user/`: user space programs that either delve into RISC-V assembly or that
     interface the Linux Kernel on the RISC-V architecture.
+- `fs/btrfs`: miscellanous tests on BTRFS.
 - `kernel/dtm`: simple kernel module showcasing the API from the `of` driver.
 - `lang/c`: miscellanous code on the C programming language.
 

@@ -1,5 +1,5 @@
 This example contains a set of files which showcase how the shutdown ioctl works
-on BTRFS. This ioctl was introduced in Linux 6.19 and is marked as an
+on BTRFS. This ioctl was introduced in Linux 6.19 and it was marked as an
 experimental feature.
 
 BTRFS has been able to freeze the filesystem for a long time, which might sound
