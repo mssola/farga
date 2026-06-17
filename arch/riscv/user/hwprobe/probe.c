@@ -166,6 +166,10 @@ static struct ext_pair_t ext_pairs[] = {
 		.value = RISCV_HWPROBE_EXT_ZACAS,
 	},
 	{
+		.id = "ZABHA",
+		.value = RISCV_HWPROBE_EXT_ZABHA,
+	},
+	{
 		.id = "ZICOND",
 		.value = RISCV_HWPROBE_EXT_ZICOND,
 	},
