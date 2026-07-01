@@ -22,5 +22,6 @@ kernel/vdso/vdso
 lang/c/counted_by
 
 # fs
+fs/btrfs/ino_lookup/ino_lookup
 fs/btrfs/shutdown/shutdown
 fs/btrfs/shutdown/fserror
