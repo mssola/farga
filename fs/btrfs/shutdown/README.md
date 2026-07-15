@@ -20,9 +20,15 @@ it stands in Linux kernel 6.19, BTRFS shutdown comes in two flavors:
 
 In order to be able to run this example as intended you need:
 
-- Linux kernel 6.19+ with BTRFS experimental features enabled.
-- A Linux kernel built with the following patch applied: (["btrfs: report filesystem shutdown via
-   fserror"](https://lore.kernel.org/linux-btrfs/20260216002806.3831884-1-mssola@mssola.com)).
+- Linux kernel 6.19+ with BTRFS experimental features enabled. **NOTE**: the
+  shutdown ioctl is no longer marked as experimental since the Linux kernel
+  v7.1.
+- A Linux kernel built with the following patch applied: (["btrfs: report
+   filesystem shutdown via
+   fserror"](https://lore.kernel.org/linux-btrfs/20260216002806.3831884-1-mssola@mssola.com)). **NOTE**:
+   this patch is applied as of Linux kernel v7.1.
+
+Thus, if your Linux kernel is v7.1 or later, then you are good to go.
 
 ## Listening for filesystem errors
 
