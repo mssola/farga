@@ -11,7 +11,7 @@
 /*
  * In projects like github.com/mssola/fbos I already dealt with ELF parsing
  * myself and it wasn't the nicest experience. Plus, in here I have to do some
- * heave usage of some ELF sections. For this reason I will not do things
+ * heavy usage of some ELF sections. For this reason I will not do things
  * manually and use the standard library instead.
  */
 #include <elf.h>

@@ -5,10 +5,9 @@ kernel automatically maps into the address space of all user-space
 applications. This way, user space can perform some system calls via this
 interface and avoid the cost of entering kernel space.
 
-This is important for
-system calls that the community has detected to be performed most often by all
-applications. Note that the regular joe doesn't have to deal with any of this as
-glibc and the likes will already take care of this.
+This is important for system calls that the community has detected to be
+performed most often by all applications. Note that the regular joe doesn't have
+to deal with any of this as glibc and the likes will already take care of this.
 
 For much more, this is all better documented via `man vdso`.
 
