@@ -9,7 +9,8 @@ A bunch of code that messes with low level stuff. That is:
   - `user/`: user space programs that either delve into RISC-V assembly or that
     interface the Linux Kernel on the RISC-V architecture.
 - `fs/btrfs`: miscellanous tests on BTRFS.
-- `kernel/dtm`: simple kernel module showcasing the API from the `of` driver.
+- `kernel/`: samples that explore the API exposed by the Linux kernel, both from
+    kernel and user space.
 - `lang/c`: miscellanous code on the C programming language.
 
 A lot of this is not taken solely from my brain, and I will give credit whenever
